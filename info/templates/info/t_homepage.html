@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+.sidebar p
+{
+  color:white;
+}
+.sidebar pre
+{
+  color:grey;
+  font-size:25px;
+  font-family:arial;
+}
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  text-align: left;
+  width:100%;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+  margin-bottom:0px;
+}
+.topnav {
+  overflow: hidden;
+  background-color:grey;
+  margin-top: 0px;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.topnav p
+{
+  float:left;
+
+}
+.topnav-right {
+  float: right;
+}
+ .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.dropdown-btn:hover {
+  color: #f1f1f1;
+}
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+h2
+{
+  font-size:20px;
+  font-family:arial;
+}
+.St
+{
+    color:blue;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+.button1:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+
+</head>
+<body>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+  <p>Welcome,</p>
+  <pre> {{ request.user.teacher.name }}</pre>
+  <br>
+  <img src="http://studentportal3.universitysolutions.in/images/Student.png"  width="150" height="150">
+  <br><br><br><br>
+
+  <button class="dropdown-btn"><span class ="glyphicon glyphicon-earphone"></span>Contact Details
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="#">Address</a>
+    <a href="#">Personal Email-id</a>
+    <a href="#">Contact No.</a>
+  </div>
+  <br>
+  <button class="dropdown-btn"><span class ="glyphicon glyphicon-list-alt"></span> Add Attendance
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="{% url 't_clas' request.user.teacher.id 1 %}">add attendance</a>
+
+  </div>
+  <br>
+  <button class="dropdown-btn"><span class ="glyphicon glyphicon-education"></span>Add SGPI
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="#">Semester 1</a>
+    <a href="#">Semester 2</a>
+    <a href="#">Semester 3</a>
+  </div>
+  <br>
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav()"><i class="fa fa-bars"></i> Profile Overview</button>
+  <div class="topnav">
+  <p><b>TEACHER DASHBOARD</b></p>
+  <div class="topnav-right">
+    <a href="/accounts/logout"><span class="glyphicon glyphicon-log-out"></span>Log Out</a>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <h2><b> Personal Details<b></h2>
+      <hr>
+      <br><br>
+      <div class="St">
+    <p>NAME : {{ request.user.teacher.name }}</p>
+    <p>GENDER : {{ request.user.teacher.sex }}</p>
+    <p>DATE OF BIRTH : {{ request.user.teacher.DOB }}</p>
+    <p>TEACHER ID: {{ request.user.teacher.id }}</p
+    <p>DEPARTMENT: {{ request.user.teacher.department }}</p>
+
+  </div>
+  </div>
+  </div>
+</div>
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>
+
+</body>
+</html>
